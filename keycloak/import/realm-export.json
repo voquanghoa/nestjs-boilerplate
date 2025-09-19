@@ -304,7 +304,7 @@
           "attributes": {}
         }
       ],
-      "urlshorter_backend_client": [],
+      "backend_client": [],
       "security-admin-console": [],
       "admin-cli": [],
       "account-console": [],
@@ -392,12 +392,12 @@
   "users": [
     {
       "id": "8a787077-81af-4f32-8c05-eb225d9d6333",
-      "username": "service-account-urlshorter_backend_client",
+      "username": "service-account-backend_client",
       "emailVerified": false,
       "createdTimestamp": 1724241650203,
       "enabled": true,
       "totp": false,
-      "serviceAccountClientId": "urlshorter_backend_client",
+      "serviceAccountClientId": "backend_client",
       "disableableCredentialTypes": [],
       "requiredActions": [],
       "clientRoles": {
@@ -641,7 +641,7 @@
     },
     {
       "id": "e373aec5-bfb3-40e7-a948-15c1590f321f",
-      "clientId": "urlshorter_backend_client",
+      "clientId": "backend_client",
       "name": "urlshorter Backend Client",
       "description": "",
       "rootUrl": "",
@@ -760,7 +760,7 @@
         "resources": [
           {
             "name": "Default Resource",
-            "type": "urn:urlshorter_backend_client:resources:default",
+            "type": "urn:backend_client:resources:default",
             "ownerManagedAccess": false,
             "attributes": {},
             "uris": [
@@ -786,7 +786,7 @@
             "logic": "POSITIVE",
             "decisionStrategy": "UNANIMOUS",
             "config": {
-              "defaultResourceType": "urn:urlshorter_backend_client:resources:default",
+              "defaultResourceType": "urn:backend_client:resources:default",
               "applyPolicies": "[\"Default Policy\"]"
             }
           }
@@ -1024,7 +1024,7 @@
             "logic": "POSITIVE",
             "decisionStrategy": "UNANIMOUS",
             "config": {
-              "clients": "[\"urlshorter_backend_client\"]"
+              "clients": "[\"backend_client\"]"
             }
           },
           {

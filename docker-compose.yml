@@ -1,44 +1,41 @@
 services:
-  urlshorter_backend:
+  backend:
     build:
       context: .
       dockerfile: backend/Dockerfile
-    image: urlshorter_be
-    container_name: urlshorter_be
+    image: backend
+    container_name: backend
     environment:
-      DB_HOST: urlshorter_db
-      KEYCLOAK_BASE_URL: http://urlshorter_keycloak:8080
+      DB_HOST: database
+      KEYCLOAK_BASE_URL: http://keycloak:8080
     restart: always
     ports:
       - "$PORT:$PORT"
     depends_on:
-      - urlshorter_db
-      - urlshorter_keycloak
-    volumes:
-      - ~/urlshorter-logs:/usr/src/app/logs
-      - $LOCAL_IMAGE_DIRECTORY:$IMAGE_DIRECTORY
+      - database
+      - keycloak
     env_file:
       - .env
 
-  urlshorter_db:
+  database:
     build: postgres
     restart: always
-    container_name: urlshorter_db
+    container_name: database
     environment:
       POSTGRES_USER: $DB_USERNAME
       POSTGRES_PASSWORD: $DB_PASSWORD
-      POSTGRES_MULTIPLE_DATABASES: urlshorter, keycloak
+      POSTGRES_MULTIPLE_DATABASES: $DB_DATABASE, keycloak
       TZ: "GMT"
       PGTZ: "GMT"
     ports:
       - "$DB_PORT:$DB_PORT"
 
-  urlshorter_keycloak:
+  keycloak:
     image: quay.io/keycloak/keycloak:latest
-    container_name: urlshorter_keycloak
+    container_name: keycloak
     environment:
       KC_DB: postgres
-      KC_DB_URL: jdbc:postgresql://urlshorter_db/keycloak
+      KC_DB_URL: jdbc:postgresql://database/keycloak
       KC_DB_USERNAME: $DB_USERNAME
       KC_DB_PASSWORD: $DB_PASSWORD
       KEYCLOAK_ADMIN: $KEYCLOAK_ADMIN
@@ -60,7 +57,7 @@ services:
     ports:
       - "$KEYCLOAK_PORT:8080"
     depends_on:
-      - urlshorter_db
+      - database
     command:
       [
         "start-dev",
