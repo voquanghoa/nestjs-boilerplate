@@ -9,7 +9,7 @@ RUN npm run build  # Chạy build với NestJS
 FROM node:22-slim AS node_modules
 WORKDIR /app
 COPY backend/package.json backend/package-lock.json ./
-RUN npm ci # --omit=dev
+RUN npm ci
 
 FROM node:22-slim
 ARG PORT=80
