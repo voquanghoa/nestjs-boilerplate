@@ -15,7 +15,6 @@ import { JwtAuthGuard } from './decorator/jwt-auth-guard';
 import { LoggingExceptionFilter } from './filter/error-handling-exception-filter';
 import { RolesGuard } from './guards/roles.guard';
 import { AuthModule } from "./modules/auth/auth.module";
-import { ImageModule } from './modules/image/image.module';
 import { KeycloakModule } from './modules/keycloak/keycloak.module';
 import { UserModule } from './modules/user/user.module';
 import { ApiConfigService } from './shared/services/api-config.service';
@@ -53,7 +52,6 @@ import { SharedModule } from './shared/shared.module';
         AuthModule,
         UserModule,
         KeycloakModule,
-        ImageModule
     ],
     providers: [
         {
